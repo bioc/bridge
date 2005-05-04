@@ -1,5 +1,5 @@
 "bridge.3samples" <-
-  function(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE)
+  function(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE)
 {
 ###  Only take the finite observations
   sample1<-as.matrix(sample1[,])
@@ -150,13 +150,14 @@
           as.double(rep(100,R3)),
           nu3=double(R3*length),
           as.double(nu.choice),
-          as.integer(nb.nu),
           as.double(w.mix),
           w.mix=double(5*length),
           as.integer(min.iter),
           as.integer(batch),
           as.integer(B),
-          as.integer(all.out),PACKAGE="bridge")
+          as.integer(all.out),
+          as.integer(verbose),
+          PACKAGE="bridge")
   
   prop.model<-matrix(0,G,5)
   model<-t(matrix(obj$model,((B-min.iter)/batch),G,byrow=TRUE))

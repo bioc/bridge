@@ -31,9 +31,9 @@ void gene_express_3s(double *y1_vec, int *R1, double *y2_vec, int *R2, double *y
 		     double *move,
 		     double *weight1_vec, double *weight2_vec, double *weight3_vec, 
 		     double *nu1, double *nu1_out, double *nu2, double *nu2_out, double *nu3, double *nu3_out,
-		     double *nu_choice, int *nb_nu,
+		     double *nu_choice, 
 		     double *w, double *w_out, int *min_iter, 
-		     int *batch, int *B, int *all_out)
+		     int *batch, int *B, int *all_out, int *verbose)
 {
   int old_model;
   int count_model=0;
@@ -41,7 +41,7 @@ void gene_express_3s(double *y1_vec, int *R1, double *y2_vec, int *R2, double *y
   int count=0,count2=0;
   double **y1, **y2, **y3;
   double **weight1,**weight2, **weight3;
-  int i,g;
+  int i,g,nb_nu=19;
 
   y1=dmatrix(*G, *R1);
   y2=dmatrix(*G, *R2);
@@ -63,11 +63,11 @@ void gene_express_3s(double *y1_vec, int *R1, double *y2_vec, int *R2, double *y
  
   for(k=0;k<*B;k++)
     { 
-      if(((k+1)*100)%(10**B)==0)
+      if((((k+1)*100)%(10**B)==0) & (*verbose==1))
 	{
 	  printf("%d percent completed \n",(((k+1)*100)/(*B)));
 	}
-      all_gibbs(y1, R1, y2, R2, y3, R3, G, mu1, mu2, mu3, model, lambda_mu1, lambda_mu2, lambda_mu3, lambda_mu12, lambda_mu23, lambda_mu13, lambda_mu123,  lambda1, lambda2, lambda3, weight1, weight2, weight3, w, nu1, nu2, nu3, nu_choice, nb_nu, a_eps1, b_eps1, a_eps2, b_eps2, a_eps3, b_eps3, move);
+      all_gibbs(y1, R1, y2, R2, y3, R3, G, mu1, mu2, mu3, model, lambda_mu1, lambda_mu2, lambda_mu3, lambda_mu12, lambda_mu23, lambda_mu13, lambda_mu123,  lambda1, lambda2, lambda3, weight1, weight2, weight3, w, nu1, nu2, nu3, nu_choice, &nb_nu, a_eps1, b_eps1, a_eps2, b_eps2, a_eps3, b_eps3, move);
 
       
       if(k>=*min_iter)

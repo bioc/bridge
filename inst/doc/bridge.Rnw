@@ -155,7 +155,7 @@ posterior distribution. In our case the inference will be based on the posterior
 {\tt post.p}.
 
 <<>>=
-bridge.hiv<-bridge.2samples(hiv[1:640,c(1:4)],hiv[1:640,c(5:8)],B=2000,min.iter=0,batch=1,mcmc.obj=NULL,affy=FALSE)
+bridge.hiv<-bridge.2samples(hiv[1:640,c(1:4)],hiv[1:640,c(5:8)],B=2000,min.iter=0,batch=1,mcmc.obj=NULL,affy=FALSE,verbose=FALSE)
 @ 
 Once you have fitted the model you may view or plot the sampled parameters from the posterior 
 distribution. We can also obtain point estimates of the paramaters of interest such as the gene effects
@@ -205,7 +205,7 @@ sample1<-matrix(exp(rnorm(150)),50,3)
 sample2<-matrix(exp(rnorm(200)),50,4)
 sample3<-matrix(exp(rnorm(150)),50,3)
 
-mcmc.bridge3<-bridge.3samples(sample1,sample2,sample3,B=10,min.iter=0,batch=1,mcmc.obj=NULL,all.out=TRUE)
+mcmc.bridge3<-bridge.3samples(sample1,sample2,sample3,B=10,min.iter=0,batch=1,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE)
 @ 
 
 \section{Computing time and batch mode}

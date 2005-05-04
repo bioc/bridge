@@ -6,7 +6,7 @@
   Test for differentially expressed genes in a two sample set-up. This code can be used with both cDNA microarrays or Affymetrix chips.  
 }
 \usage{
-bridge.2samples(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE)
+bridge.2samples(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE,verbose=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \details{
@@ -37,7 +37,8 @@ bridge.2samples(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out
   \item{affy}{A logical value indicating if the data correspond to affy
     data or cDNA microarray data. If affy=FALSE, a bivariate
     distribution is used.}
-  
+  \item{verbose}{A logical value indicating if
+    the current MCMC iteration number should be printed out.}
 }
 \value{
   An object of type \code{bridge2} containing the sampled values from the
@@ -96,7 +97,7 @@ bridge.2samples(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out
 \examples{
 data(hiv)
 
-bridge.hiv<-bridge.2samples(hiv[1:10,c(1:4)],hiv[1:10,c(5:8)],B=2000,min.iter=0,batch=1,mcmc.obj=NULL)
+bridge.hiv<-bridge.2samples(hiv[1:10,c(1:4)],hiv[1:10,c(5:8)],B=2000,min.iter=0,batch=1,mcmc.obj=NULL,verbose=FALSE)
 }
 \keyword{models}
 \keyword{robust}

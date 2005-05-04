@@ -31,7 +31,7 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
 		     double *nu1, double *nu1_out, double *nu2, double *nu2_out, 
 		     double *nu_choice, int *nb_nu,
 		     double *w, double *w_out, int *min_iter, 
-		     int *batch, int *B, int *all_out)
+		     int *batch, int *B, int *all_out, int *verbose)
 {
   int old_model;
   int count_model=0;
@@ -57,7 +57,7 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
  
   for(k=0;k<*B;k++)
     { 
-      if(((k+1)*100)%(10**B)==0)
+      if((((k+1)*100)%(10**B)==0) & (*verbose==1))
 	{
 	  printf("%d percent completed \n",(((k+1)*100)/(*B)));
 	}

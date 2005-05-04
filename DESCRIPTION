@@ -18,3 +18,4 @@ Description: Test for differentially expressed genes with microarray
 Maintainer: Raphael Gottardo <raph@stat.washington.edu>
 Depends: R (>= 1.9.0), rama
 License: GPL version 2 or newer
+Packaged: Thu Apr 28 23:13:34 2005; biocbuild

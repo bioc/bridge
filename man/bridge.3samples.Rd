@@ -8,7 +8,7 @@
   code can be used with both cDNA microarrays or Affymetrix chip.
 }
 \usage{
-bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE)
+bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE)
 }
 
 \details{
@@ -45,6 +45,8 @@ bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL
   \item{all.out}{A logical value indicating if all the parameters
     should be output. If \code{all.out} is FALSE, only the posterior
     mean is output. This could be used to save memory. }
+  \item{verbose}{A logical value indicating if
+    the current MCMC iteration number should be printed out.}
 }
 \value{
   An object of type \code{bridge3} containing the sampled values from the
@@ -131,7 +133,7 @@ sample1<-matrix(exp(rnorm(150)),50,3)
 sample2<-matrix(exp(rnorm(200)),50,4)
 sample3<-matrix(exp(rnorm(150)),50,3)
 
-mcmc.bridge3<-bridge.3samples(sample1,sample2,sample3,B=10,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE)
+mcmc.bridge3<-bridge.3samples(sample1,sample2,sample3,B=10,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE)
 }
 \keyword{models}
 \keyword{robust}
