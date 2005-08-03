@@ -1,9 +1,15 @@
 "bridge.2samples" <-
-  function(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE,verbose=FALSE)
+  function(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE,verbose=FALSE,log=FALSE)
 {
 ###  Only take the finite observations
   n<-dim(sample1) 
 
+  if(!log)
+    {
+      sample1<-log(sample1)
+      sample2<-log(sample2)
+    }
+  
   vec1<-as.double(t(sample1))
   vec1[is.finite(vec1)==FALSE]<- -9999999
   vec2<-as.double(t(sample2))
@@ -15,7 +21,8 @@
   nu.out<-double(n[2]*(B-min.iter)/batch)           
   a.gamma<-1
   b.gamma<-0.005
-  
+
+
   
   if(length(mcmc.obj)>0)
     {
@@ -49,11 +56,11 @@
   else
     {
       
-      gamma1<-mat.mean(log(sample1))[,1]
-      gamma2<-mat.mean(log(sample2))[,1]
+      gamma1<-mat.mean(sample1)[,1]
+      gamma2<-mat.mean(sample2)[,1]
 
-      lambda.eps1<-1/mat.mean(log(sample1))[,2]^2
-      lambda.eps2<-1/mat.mean(log(sample2))[,2]^2
+      lambda.eps1<-1/mat.mean(sample1)[,2]^2
+      lambda.eps2<-1/mat.mean(sample2)[,2]^2
       
       lambda.gamma1<-1/var(gamma1)
       lambda.gamma2<-1/var(gamma2)
@@ -87,9 +94,9 @@
       w.mix=c(.5,.5)
       
       obj<-.C("gene_express_2s",
-              as.double(log2(vec1)),
+              as.double(vec1),
               as.integer(R1),
-              as.double(log2(vec2)),
+              as.double(vec2),
               as.integer(R2),
               as.integer(G),
               as.double(gamma1),
@@ -137,8 +144,8 @@
     }
   else
     obj<-.C("ex_R_link_bridge2",
-            as.double(log2(vec1)),
-            as.double(log2(vec2)),
+            as.double(vec1),
+            as.double(vec2),
             as.integer(n[1]),
             as.integer(n[2]),
             as.integer(n[2]/2),

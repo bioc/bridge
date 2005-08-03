@@ -87,7 +87,7 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
 		  	      
 		  for(i=0;i<2;i++)
 		    w_out[count*2+i]=w[i];
-	      
+		  
 		  for(i=0;i<*R1;i++)
 		    nu1_out[count**R1+i]=nu1[i];
 		  for(i=0;i<*R2;i++)
@@ -106,12 +106,12 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
 		{
 		  for(g=0;g<*G;g++)
 		    {
-		      mu1_out[count**G+g]+=mu1[g]/((*B-*min_iter)/(*batch));
-		      mu2_out[count**G+g]+=mu2[g]/((*B-*min_iter)/(*batch));
-		      model_out[count**G+g]=model[g];
+		      mu1_out[g]+=mu1[g]/((*B-*min_iter)/(*batch));
+		      mu2_out[g]+=mu2[g]/((*B-*min_iter)/(*batch));
+		      model_out[g]=model[g];
 		      
-		      lambda1_out[count**G+g]+=lambda1[g]/((*B-*min_iter)/(*batch));	      	      
-		      lambda2_out[count**G+g]+=lambda2[g]/((*B-*min_iter)/(*batch));
+		      lambda1_out[g]+=lambda1[g]/((*B-*min_iter)/(*batch));	      	      
+		      lambda2_out[g]+=lambda2[g]/((*B-*min_iter)/(*batch));
 		      
 		      for(i=0;i<*R1;i++)
 			weight1_vec[i**G+g]+=weight1[g][i]/((*B-*min_iter)/(*batch)+1.);
@@ -120,21 +120,21 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
 		    }
 		  	      
 		  for(i=0;i<2;i++)
-		    w_out[count*2+i]+=w[i]/((*B-*min_iter)/(*batch));
+		    w_out[i]+=w[i]/((*B-*min_iter)/(*batch));
 	      
 		  for(i=0;i<*R1;i++)
-		    nu1_out[count**R1+i]+=nu1[i];
+		    nu1_out[i]+=nu1[i]/((*B-*min_iter)/(*batch));
 		  for(i=0;i<*R2;i++)
-		    nu2_out[count**R2+i]+=nu2[i];
+		    nu2_out[i]+=nu2[i]/((*B-*min_iter)/(*batch));
 		  
-		  a_eps1_out[count]+=*a_eps1/((*B-*min_iter)/(*batch));
-		  b_eps1_out[count]+=*b_eps1/((*B-*min_iter)/(*batch));
-		  a_eps2_out[count]+=*a_eps2/((*B-*min_iter)/(*batch));
-		  b_eps2_out[count]+=*b_eps2/((*B-*min_iter)/(*batch));
+		  *a_eps1_out+=*a_eps1/((*B-*min_iter)/(*batch));
+		  *b_eps1_out+=*b_eps1/((*B-*min_iter)/(*batch));
+		  *a_eps2_out+=*a_eps2/((*B-*min_iter)/(*batch));
+		  *b_eps2_out+=*b_eps2/((*B-*min_iter)/(*batch));
 		  
-		  lambda_mu1_out[count]+=*lambda_mu1/((*B-*min_iter)/(*batch));
-		  lambda_mu2_out[count]+=*lambda_mu2/((*B-*min_iter)/(*batch));
-		  lambda_mu12_out[count]+=*lambda_mu12/((*B-*min_iter)/(*batch));
+		  *lambda_mu1_out+=*lambda_mu1/((*B-*min_iter)/(*batch));
+		  *lambda_mu2_out+=*lambda_mu2/((*B-*min_iter)/(*batch));
+		  *lambda_mu12_out+=*lambda_mu12/((*B-*min_iter)/(*batch));
 		}
 	      count++;
 	    }

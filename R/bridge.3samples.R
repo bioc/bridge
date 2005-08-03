@@ -1,10 +1,14 @@
 "bridge.3samples" <-
-  function(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE)
+  function(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE,log=FALSE)
 {
 ###  Only take the finite observations
-  sample1<-as.matrix(sample1[,])
-  sample2<-as.matrix(sample2[,])
-  sample3<-as.matrix(sample3[,])  
+  if(!log)
+    {
+      sample1<-log(sample1)
+      sample2<-log(sample2)
+      sample3<-log(sample3)
+    }
+  
   G<-dim(sample1)[1]
   R1<-dim(sample1)[2]
   R2<-dim(sample2)[2]

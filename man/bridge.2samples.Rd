@@ -6,7 +6,7 @@
   Test for differentially expressed genes in a two sample set-up. This code can be used with both cDNA microarrays or Affymetrix chips.  
 }
 \usage{
-bridge.2samples(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE,verbose=FALSE)
+bridge.2samples(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE,verbose=FALSE,log=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \details{
@@ -39,6 +39,9 @@ bridge.2samples(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out
     distribution is used.}
   \item{verbose}{A logical value indicating if
     the current MCMC iteration number should be printed out.}
+  \item{log}{A logical value indicating if
+    the data are log transformed.}
+  
 }
 \value{
   An object of type \code{bridge2} containing the sampled values from the

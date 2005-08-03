@@ -697,7 +697,7 @@ void mcmc(double **data1,double **data2, int *n1, int *n2, int *nb_col1,
 		    }
 		  }
 		
-
+		
 		if(*all_out==1)
 		  {
 		    a_eps1_p[count]=*a_eps1;
@@ -713,16 +713,16 @@ void mcmc(double **data1,double **data2, int *n1, int *n2, int *nb_col1,
 		  }
 		else /** posterior mean **/
 		  {
-		    a_eps1_p[count]+=*a_eps1/((*B-*min_iter)/(*batch));
-		    b_eps1_p[count]+=*b_eps1/((*B-*min_iter)/(*batch));
-		    a_eps2_p[count]+=*a_eps2/((*B-*min_iter)/(*batch));
-		    b_eps2_p[count]+=*b_eps2/((*B-*min_iter)/(*batch));
+		    *a_eps1_p+=*a_eps1/((*B-*min_iter)/(*batch));
+		    *b_eps1_p+=*b_eps1/((*B-*min_iter)/(*batch));
+		    *a_eps2_p+=*a_eps2/((*B-*min_iter)/(*batch));
+		    *b_eps2_p+=*b_eps2/((*B-*min_iter)/(*batch));
 		    
-		    lambda_gamma1_p[count]+=*lambda_gamma1/((*B-*min_iter)/(*batch));
-		    lambda_gamma2_p[count]+=*lambda_gamma2/((*B-*min_iter)/(*batch));
-		    lambda_gamma_p[count]=+*lambda_gamma/((*B-*min_iter)/(*batch));
-		    p_p[count]+=*p/((*B-*min_iter)/(*batch));
-		    rho_p[count]=*rho/((*B-*min_iter)/(*batch));
+		    *lambda_gamma1_p+=*lambda_gamma1/((*B-*min_iter)/(*batch));
+		    *lambda_gamma2_p+=*lambda_gamma2/((*B-*min_iter)/(*batch));
+		    *lambda_gamma_p=+*lambda_gamma/((*B-*min_iter)/(*batch));
+		    *p_p+=*p/((*B-*min_iter)/(*batch));
+		    *rho_p=*rho/((*B-*min_iter)/(*batch));
 		  }
 				
 		

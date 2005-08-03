@@ -8,7 +8,7 @@
   code can be used with both cDNA microarrays or Affymetrix chip.
 }
 \usage{
-bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE)
+bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE,log=FALSE)
 }
 
 \details{
@@ -17,9 +17,11 @@ bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL
   Outliers are modeled explicitly using a $t$-distribution. 
   The model includes an exchangeable prior for the variances which allow different variances for the genes but still
   shrink extreme empirical variances. This function DO NOT perform
-  normalization. The data should be normalized before hands such as
-  centering the mean expression of each experiment. The data should be
-  on the raw scale, i.e. untransformed.
+  normalization.
+  The data should be normalized before hands such as
+  centering the mean expression of each experiment.
+  %The data should be
+  %on the raw scale, i.e. untransformed.
   More details can be found in the
   references below. 
 }
@@ -47,6 +49,8 @@ bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL
     mean is output. This could be used to save memory. }
   \item{verbose}{A logical value indicating if
     the current MCMC iteration number should be printed out.}
+  \item{log}{A logical value indicating if
+    the data are log transformed.}
 }
 \value{
   An object of type \code{bridge3} containing the sampled values from the
