@@ -1,0 +1,6 @@
+BRIDGE Change log file.
+
+- 06/20/2005:
+Changed a bug when computing the posterior mean of the parameters
+(option all.out=FALSE) that would cause a segmentation fault.
+
