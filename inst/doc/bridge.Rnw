@@ -30,9 +30,9 @@ The bridge package}
 
 \tableofcontents
 
-% library(tools)
-% Rnwfile<- file.path("./","bridge.Rnw") 
-% Sweave(Rnwfile,pdf=TRUE,eps=TRUE,stylepath=TRUE,driver=RweaveLatex())
+#library(tools)
+# Rnwfile<- file.path("./","bridge.Rnw") 
+# Sweave(Rnwfile,pdf=TRUE,eps=TRUE,stylepath=TRUE,driver=RweaveLatex())
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview}
