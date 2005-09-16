@@ -1,6 +1,6 @@
 Package: bridge
 Title: Bayesian Robust Inference for Differential Gene Expression
-Version: 1.1.1
+Version: 1.1.2
 Author: Raphael Gottardo
 Description: Test for differentially expressed genes with microarray
     data. This package can be used with both cDNA microarrays or
@@ -18,4 +18,4 @@ Description: Test for differentially expressed genes with microarray
 Maintainer: Raphael Gottardo <raph@stat.ubc.ca>
 Depends: R (>= 1.9.0), rama
 License: GPL version 2 or newer
-
+biocViews: Microarray,OneChannel,TwoChannel,DifferentialExpression
