@@ -1,0 +1,3 @@
+useDynLib(bridge)
+
+export(bridge.2samples, bridge.3samples)
