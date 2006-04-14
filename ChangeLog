@@ -1,6 +1,8 @@
 BRIDGE Change log file.
 
+- 04/13/2006:
+Fixed a slight bug in the initialization of the Markov chain. 
 - 06/20/2005:
-Changed a bug when computing the posterior mean of the parameters
+Fixed a bug when computing the posterior mean of the parameters
 (option all.out=FALSE) that would cause a segmentation fault.
 

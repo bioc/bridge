@@ -54,9 +54,9 @@
       gamma2<-mat.mean(sample2)[,1]
       gamma3<-mat.mean(sample3)[,1]
       
-      lambda1<-1./mat.mean(sample1)[,2]^2
-      lambda2<-1./mat.mean(sample2)[,2]^2
-      lambda3<-1./mat.mean(sample3)[,2]^2
+      lambda1<-1./(mat.mean(sample1)+0.001)[,2]^2
+      lambda2<-1./(mat.mean(sample2)+0.001)[,2]^2
+      lambda3<-1./(mat.mean(sample3)+0.001)[,2]^2
       a.eps1<-median(lambda1)
       b.eps1<-mad(lambda1)
       a.eps2<-median(lambda2)

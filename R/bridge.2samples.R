@@ -59,8 +59,8 @@
       gamma1<-mat.mean(sample1)[,1]
       gamma2<-mat.mean(sample2)[,1]
 
-      lambda.eps1<-1/mat.mean(sample1)[,2]^2
-      lambda.eps2<-1/mat.mean(sample2)[,2]^2
+      lambda.eps1<-1/(mat.mean(sample1)[,2]+0.0001)^2
+      lambda.eps2<-1/(mat.mean(sample2)[,2]+0.0001)^2
       
       lambda.gamma1<-1/var(gamma1)
       lambda.gamma2<-1/var(gamma2)

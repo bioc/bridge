@@ -145,11 +145,11 @@ void gene_express_3s(double *y1_vec, int *R1, double *y2_vec, int *R2, double *y
 		    w_out[count*5+i]+=w[i]/((*B-*min_iter)/(*batch));
 	      
 		  for(i=0;i<*R1;i++)
-		    nu1_out[count**R1+i]+=nu1[i]/((*B-*min_iter)/(*batch));
+		    nu1_out[i]+=nu1[i]/((*B-*min_iter)/(*batch));
 		  for(i=0;i<*R2;i++)
-		    nu2_out[count**R2+i]+=nu2[i]/((*B-*min_iter)/(*batch));
+		    nu2_out[i]+=nu2[i]/((*B-*min_iter)/(*batch));
 		  for(i=0;i<*R3;i++)
-		    nu3_out[count**R3+i]+=nu3[i]/((*B-*min_iter)/(*batch));
+		    nu3_out[i]+=nu3[i]/((*B-*min_iter)/(*batch));
 		  
 		  *a_eps1_out+=*a_eps1/((*B-*min_iter)/(*batch));
 		  *b_eps1_out+=*b_eps1/((*B-*min_iter)/(*batch));
