@@ -222,15 +222,17 @@
     }  
   else
     {
-      new.mcmc<-list(gamma1=t(matrix(obj$gamma1,(B-min.iter)/batch,n[1],byrow=TRUE)),
-                     gamma2=t(matrix(obj$gamma2,(B-min.iter)/batch,n[1],byrow=TRUE)),
-                     lambda.eps1=t(matrix(obj$lambda.eps1,(B-min.iter)/batch,n[1],byrow=TRUE)),
-                     lambda.eps2=t(matrix(obj$lambda.eps2,(B-min.iter)/batch,n[1],byrow=TRUE)),
+      
+      
+      new.mcmc<-list(gamma1=t(matrix(obj$gamma1,length,n[1],byrow=TRUE)),
+                     gamma2=t(matrix(obj$gamma2,length,n[1],byrow=TRUE)),
+                     lambda.eps1=t(matrix(obj$lambda.eps1,length,n[1],byrow=TRUE)),
+                     lambda.eps2=t(matrix(obj$lambda.eps2,length,n[1],byrow=TRUE)),
                      lambda.gamma1=obj$lambda.gamma1,lambda.gamma2=obj$lambda.gamma2,
                      rho=obj$rho, lambda.gamma=obj$lambda.gamma, 
                      w1=matrix(obj$w,n[1],n[2]),
                      w2=obj$w,
-                     nu1=t(matrix(obj$nu,(B-min.iter)/batch,n[2],byrow=TRUE)),
+                     nu1=t(matrix(obj$nu,length,n[2],byrow=TRUE)),
                      nu2=obj$nu,
                      a.eps1=obj$a.eps1,b.eps1=obj$b.eps1,a.eps2=obj$a.eps2,
                      b.eps2=obj$b.eps2, p=obj$p,post.p=obj$post.p,move=obj$move)

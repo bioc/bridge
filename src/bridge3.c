@@ -127,7 +127,8 @@ void gene_express_3s(double *y1_vec, int *R1, double *y2_vec, int *R2, double *y
 		      mu1_out[g]+=mu1[g]/((*B-*min_iter)/(*batch));
 		      mu2_out[g]+=mu2[g]/((*B-*min_iter)/(*batch));
 		      mu3_out[g]+=mu3[g]/((*B-*min_iter)/(*batch));
-		      model_out[g]=model[g];
+		      
+		      model_out[count**G+g]=model[g];
 		      
 		      lambda1_out[g]+=lambda1[g]/((*B-*min_iter)/(*batch));	      	      
 		      lambda2_out[g]+=lambda2[g]/((*B-*min_iter)/(*batch));
@@ -142,7 +143,7 @@ void gene_express_3s(double *y1_vec, int *R1, double *y2_vec, int *R2, double *y
 		    }
 		  	      
 		  for(i=0;i<5;i++)
-		    w_out[count*5+i]+=w[i]/((*B-*min_iter)/(*batch));
+		    w_out[i]+=w[i]/((*B-*min_iter)/(*batch));
 	      
 		  for(i=0;i<*R1;i++)
 		    nu1_out[i]+=nu1[i]/((*B-*min_iter)/(*batch));
@@ -265,17 +266,29 @@ void gibbs_mu(double *y1, int R1, double *y2, int R2, double *y3, int R3, double
   
 
   
-  K[0]=w[0]*sqrt(lambda_mu123)/sqrt(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123)*exp(0.5*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)/(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123));
+/*   K[0]=w[0]*sqrt(lambda_mu123)/sqrt(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123)*exp(0.5*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)/(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123)); */
   
-  K[1]=w[1]*sqrt(lambda_mu1*lambda_mu23)/sqrt((sum_w1*lambda1+lambda_mu1)*(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23))*exp(0.5*(lambda1*sum_y1)*(lambda1*sum_y1)/(sum_w1*lambda1+lambda_mu1))*exp(0.5*(lambda2*sum_y2+lambda3*sum_y3)*(lambda2*sum_y2+lambda3*sum_y3)/(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23));
+/*   K[1]=w[1]*sqrt(lambda_mu1*lambda_mu23)/sqrt((sum_w1*lambda1+lambda_mu1)*(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23))*exp(0.5*(lambda1*sum_y1)*(lambda1*sum_y1)/(sum_w1*lambda1+lambda_mu1))*exp(0.5*(lambda2*sum_y2+lambda3*sum_y3)*(lambda2*sum_y2+lambda3*sum_y3)/(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23)); */
   
-  K[2]=w[2]*sqrt(lambda_mu2*lambda_mu13)/sqrt((sum_w2*lambda2+lambda_mu2)*(sum_w1*lambda1+sum_w3*lambda3+lambda_mu13))*exp(0.5*(lambda2*sum_y2)*(lambda2*sum_y2)/(sum_w2*lambda2+lambda_mu2))*exp(0.5*(lambda1*sum_y1+lambda3*sum_y3)*(lambda1*sum_y1+lambda3*sum_y3)/(sum_w1*lambda1+sum_w3*lambda3+lambda_mu13));
+/*   K[2]=w[2]*sqrt(lambda_mu2*lambda_mu13)/sqrt((sum_w2*lambda2+lambda_mu2)*(sum_w1*lambda1+sum_w3*lambda3+lambda_mu13))*exp(0.5*(lambda2*sum_y2)*(lambda2*sum_y2)/(sum_w2*lambda2+lambda_mu2))*exp(0.5*(lambda1*sum_y1+lambda3*sum_y3)*(lambda1*sum_y1+lambda3*sum_y3)/(sum_w1*lambda1+sum_w3*lambda3+lambda_mu13)); */
   
-  K[3]=w[3]*sqrt(lambda_mu3*lambda_mu12)/sqrt((sum_w3*lambda3+lambda_mu3)*(sum_w1*lambda1+sum_w2*lambda2+lambda_mu12))*exp(0.5*(lambda3*sum_y3)*(lambda3*sum_y3)/(sum_w3*lambda3+lambda_mu3))*exp(0.5*(lambda1*sum_y1+lambda2*sum_y2)*(lambda1*sum_y1+lambda2*sum_y2)/(sum_w1*lambda1+sum_w2*lambda2+lambda_mu12));
+/*   K[3]=w[3]*sqrt(lambda_mu3*lambda_mu12)/sqrt((sum_w3*lambda3+lambda_mu3)*(sum_w1*lambda1+sum_w2*lambda2+lambda_mu12))*exp(0.5*(lambda3*sum_y3)*(lambda3*sum_y3)/(sum_w3*lambda3+lambda_mu3))*exp(0.5*(lambda1*sum_y1+lambda2*sum_y2)*(lambda1*sum_y1+lambda2*sum_y2)/(sum_w1*lambda1+sum_w2*lambda2+lambda_mu12)); */
   
-  K[4]=w[4]*sqrt(lambda_mu1*lambda_mu2*lambda_mu3)/sqrt((sum_w1*lambda1+lambda_mu1)*(sum_w2*lambda2+lambda_mu2)*(sum_w3*lambda3+lambda_mu3))*exp(0.5*(lambda1*sum_y1)*(lambda1*sum_y1)/(sum_w1*lambda1+lambda_mu1))*exp(0.5*(lambda2*sum_y2)*(lambda2*sum_y2)/(sum_w2*lambda2+lambda_mu2))*exp(0.5*(lambda3*sum_y3)*(lambda3*sum_y3)/(sum_w3*lambda3+lambda_mu3));
+/*   K[4]=w[4]*sqrt(lambda_mu1*lambda_mu2*lambda_mu3)/sqrt((sum_w1*lambda1+lambda_mu1)*(sum_w2*lambda2+lambda_mu2)*(sum_w3*lambda3+lambda_mu3))*exp(0.5*(lambda1*sum_y1)*(lambda1*sum_y1)/(sum_w1*lambda1+lambda_mu1))*exp(0.5*(lambda2*sum_y2)*(lambda2*sum_y2)/(sum_w2*lambda2+lambda_mu2))*exp(0.5*(lambda3*sum_y3)*(lambda3*sum_y3)/(sum_w3*lambda3+lambda_mu3)); */
   
   
+  K[0]=w[0]*sqrt(lambda_mu123)/sqrt(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123);
+  
+  K[1]=w[1]*sqrt(lambda_mu1*lambda_mu23)/sqrt((sum_w1*lambda1+lambda_mu1)*(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23))*exp(-0.5*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)/(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123)+0.5*(lambda1*sum_y1)*(lambda1*sum_y1)/(sum_w1*lambda1+lambda_mu1)+0.5*(lambda2*sum_y2+lambda3*sum_y3)*(lambda2*sum_y2+lambda3*sum_y3)/(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23));
+  
+  K[2]=w[2]*sqrt(lambda_mu2*lambda_mu13)/sqrt((sum_w2*lambda2+lambda_mu2)*(sum_w1*lambda1+sum_w3*lambda3+lambda_mu13))*exp(-0.5*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)/(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123)+0.5*(lambda2*sum_y2)*(lambda2*sum_y2)/(sum_w2*lambda2+lambda_mu2)+0.5*(lambda1*sum_y1+lambda3*sum_y3)*(lambda1*sum_y1+lambda3*sum_y3)/(sum_w1*lambda1+sum_w3*lambda3+lambda_mu13));
+  
+  K[3]=w[3]*sqrt(lambda_mu3*lambda_mu12)/sqrt((sum_w3*lambda3+lambda_mu3)*(sum_w1*lambda1+sum_w2*lambda2+lambda_mu12))*exp(-0.5*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)/(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123)+0.5*(lambda3*sum_y3)*(lambda3*sum_y3)/(sum_w3*lambda3+lambda_mu3)+0.5*(lambda1*sum_y1+lambda2*sum_y2)*(lambda1*sum_y1+lambda2*sum_y2)/(sum_w1*lambda1+sum_w2*lambda2+lambda_mu12));
+  
+  K[4]=w[4]*sqrt(lambda_mu1*lambda_mu2*lambda_mu3)/sqrt((sum_w1*lambda1+lambda_mu1)*(sum_w2*lambda2+lambda_mu2)*(sum_w3*lambda3+lambda_mu3))*exp(-0.5*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)*(sum_y1*lambda1+sum_y2*lambda2+sum_y3*lambda3)/(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123)+0.5*(lambda1*sum_y1)*(lambda1*sum_y1)/(sum_w1*lambda1+lambda_mu1)+0.5*(lambda2*sum_y2)*(lambda2*sum_y2)/(sum_w2*lambda2+lambda_mu2)+0.5*(lambda3*sum_y3)*(lambda3*sum_y3)/(sum_w3*lambda3+lambda_mu3));
+  
+  
+
 
   sum_K=K[0]+K[1]+K[2]+K[3]+K[4];
   w_star[0]=K[0]/(sum_K);
@@ -285,7 +298,12 @@ void gibbs_mu(double *y1, int R1, double *y2, int R2, double *y3, int R3, double
   w_star[4]=(K[0]+K[1]+K[2]+K[3]+K[4])/(sum_K);
   
   
-
+/*   printf("sum_K=%lf\n",sum_K); */
+/*   printf("K[0]=%lf\n",K[0]); */
+/*   printf("K[1]=%lf\n",K[1]); */
+/*   printf("K[2]=%lf\n",K[2]); */
+/*   printf("K[3]=%lf\n",K[3]); */
+  
   if(u<w_star[0]) /** They are all equal **/
     {
       *mu1=rnorm((lambda1*sum_y1+lambda2*sum_y2+lambda3*sum_y3)/(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123),1./sqrt(sum_w1*lambda1+sum_w2*lambda2+sum_w3*lambda3+lambda_mu123));
@@ -293,7 +311,7 @@ void gibbs_mu(double *y1, int R1, double *y2, int R2, double *y3, int R3, double
       *mu3=*mu1;
       *model=0;
     }
-  else if((w_star[0]<u) & (u<w_star[1])) /** 2 and 3 are equal **/
+  if((w_star[0]<u) & (u<w_star[1])) /** 2 and 3 are equal **/
     {
       *mu1=rnorm(lambda1*sum_y1/(sum_w1*lambda1+lambda_mu1),1./sqrt(sum_w1*lambda1+lambda_mu1));
       *mu2=rnorm((lambda2*sum_y2+lambda3*sum_y3)/(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23),1./sqrt(sum_w2*lambda2+sum_w3*lambda3+lambda_mu23));
@@ -314,13 +332,14 @@ void gibbs_mu(double *y1, int R1, double *y2, int R2, double *y3, int R3, double
       *mu1=*mu2;
       *model=3;
     }
-  else 
+  else if((w_star[3]<u) & u<w_star[4])
     {
       *mu1=rnorm(lambda1*sum_y1/(sum_w1*lambda1+lambda_mu1),1./sqrt(sum_w1*lambda1+lambda_mu1));
       *mu2=rnorm(lambda2*sum_y2/(sum_w2*lambda2+lambda_mu2),1./sqrt(sum_w2*lambda2+lambda_mu2));
       *mu3=rnorm(lambda3*sum_y3/(sum_w3*lambda3+lambda_mu3),1./sqrt(sum_w3*lambda3+lambda_mu3));
       *model=4;
     }
+
   
 }
 
