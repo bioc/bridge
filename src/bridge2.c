@@ -576,7 +576,7 @@ void mcmc(double **data1,double **data2, int *n1, int *n2, int *nb_col1,
 	  
 	}
       *rho=slice_sampling_rho(*rho, 0.1, 10, SSR1, SSR2, SS12, *n1**n2);           
-      *rho=0;  
+      //*rho=0;  
       /** Up-date the weight for the t-distribution **/
 
 	for(j=0;j<*n2;j++)
