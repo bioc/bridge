@@ -4,7 +4,7 @@
 % \VignettePackage{bridge}
 \documentclass[11pt]{article}
 
-\usepackage{amsmath,epsfig,psfig,fullpage} %pstricks
+\usepackage{amsmath,epsfig,fullpage} %pstricks
 \usepackage{graphicx}
 
 \usepackage{hyperref}
