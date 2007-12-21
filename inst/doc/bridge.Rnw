@@ -42,12 +42,12 @@ of samples. \\
 
 We use a robust Bayesian hierarchical model for 
 testing for differential expression with microarrays. 
-The model is a generalization of a model used by \shortciteN{bib:gottardo2003b} to estimate the true mean intensities from replicates. 
+The model is a generalization of a model used by \shortciteN{Gottardo:2006p1950} to estimate the true mean intensities from replicates. 
 Outliers are modeled explicitly using a $t$-distribution. 
 The model is flexible with an exchangeable prior for the variances which allow different variances for the genes but still
  shrink extreme variances. Our model can be used for testing for differentially expressed genes among multiple samples. 
 Parameter estimation is carried out using Markov Chain Monte Carlo. 
-The robust estimation is achieved by hierarchical Bayesian modeling \shortcite{bib:gottardo2004}.
+The robust estimation is achieved by hierarchical Bayesian modeling \shortcite{Gottardo:2006p12}.
 
 Realizations are generated from the posterior distribution
 via Markov chain Monte Carlo (MCMC) algorithms \cite{bib:gelfand90}.  
