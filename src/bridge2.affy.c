@@ -1,7 +1,7 @@
 #include "bridge2_util.h" 
 
 
-void all_gibbs2(double **y1, int *R1, double **y2, int *R2, int *G, double *mu1, double *mu2, int *model, double *post_p, double *lambda_mu1, double *lambda_mu2, double *lambda_mu12, double *lambda1, double *lambda2, double **weight1, double **weight2, double *w, double *nu1, double *nu2, double *nu_choice, int *nb_nu, double *a_eps1, double *b_eps1, double *a_eps2, double *b_eps2, double *move);
+void all_gibbs2(double **y1, int *R1, double **y2, int *R2, int *G, double *mu1, double *mu2, int *model, double *post_p, double *lambda_mu1, double *lambda_mu2, double *lambda_mu12, double *lambda1, double *lambda2, double **weight1, double **weight2, double *w, double *nu1, double *nu2, double *nu_choice, int *nb_nu, double *a_eps1, double *b_eps1, double *a_eps2, double *b_eps2, double *move, int *robust);
 
 void up_date_weight_nu2(double **y, int R, int G, double *lambda, double *mu,
 		       double **weight, double *nu_choice, int nb_nu, double *nu);
@@ -31,7 +31,7 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
 		     double *nu1, double *nu1_out, double *nu2, double *nu2_out, 
 		     double *nu_choice, int *nb_nu,
 		     double *w, double *w_out, int *min_iter, 
-		     int *batch, int *B, int *all_out, int *verbose)
+		     int *batch, int *B, int *all_out, int *verbose, int *robust)
 {
   int old_model;
   int count_model=0;
@@ -61,7 +61,7 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
 	{
 	  printf("%d percent completed \n",(((k+1)*100)/(*B)));
 	}
-      all_gibbs2(y1, R1, y2, R2, G, mu1, mu2, model, post_p, lambda_mu1, lambda_mu2, lambda_mu12, lambda1, lambda2, weight1, weight2, w, nu1, nu2, nu_choice, nb_nu, a_eps1, b_eps1, a_eps2, b_eps2, move);
+      all_gibbs2(y1, R1, y2, R2, G, mu1, mu2, model, post_p, lambda_mu1, lambda_mu2, lambda_mu12, lambda1, lambda2, weight1, weight2, w, nu1, nu2, nu_choice, nb_nu, a_eps1, b_eps1, a_eps2, b_eps2, move, robust);
 
       
       if(k>=*min_iter)
@@ -152,7 +152,7 @@ void gene_express_2s(double *y1_vec, int *R1, double *y2_vec, int *R2, int *G, d
 }
 
 
-void all_gibbs2(double **y1, int *R1, double **y2, int *R2, int *G, double *mu1, double *mu2, int *model, double *post_p, double *lambda_mu1, double *lambda_mu2, double *lambda_mu12, double *lambda1, double *lambda2, double **weight1, double **weight2, double *w, double *nu1, double *nu2, double *nu_choice, int *nb_nu, double *a_eps1, double *b_eps1, double *a_eps2, double *b_eps2, double *move)
+void all_gibbs2(double **y1, int *R1, double **y2, int *R2, int *G, double *mu1, double *mu2, int *model, double *post_p, double *lambda_mu1, double *lambda_mu2, double *lambda_mu12, double *lambda1, double *lambda2, double **weight1, double **weight2, double *w, double *nu1, double *nu2, double *nu_choice, int *nb_nu, double *a_eps1, double *b_eps1, double *a_eps2, double *b_eps2, double *move, int *robust)
 {
   int g;
   int old_model;
@@ -170,9 +170,11 @@ void all_gibbs2(double **y1, int *R1, double **y2, int *R2, int *G, double *mu1,
     }
 
   up_date_lambda_mu2(*G, mu1, mu2, model, lambda_mu1, lambda_mu2, lambda_mu12);
-  up_date_weight_nu2(y1, *R1, *G, lambda1, mu1, weight1, nu_choice, *nb_nu, nu1);
-  up_date_weight_nu2(y2, *R2, *G, lambda2, mu2, weight2, nu_choice, *nb_nu, nu2);
-
+  if(*robust==1)
+  {
+    up_date_weight_nu2(y1, *R1, *G, lambda1, mu1, weight1, nu_choice, *nb_nu, nu1);
+    up_date_weight_nu2(y2, *R2, *G, lambda2, mu2, weight2, nu_choice, *nb_nu, nu2);
+  }
   up_date_w2(*G, model, w);
   up_date_a_b2(lambda1, *G, a_eps1, b_eps1);
   up_date_a_b2(lambda2, *G, a_eps2, b_eps2);

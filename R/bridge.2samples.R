@@ -1,5 +1,5 @@
 "bridge.2samples" <-
-  function(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE,verbose=FALSE,log=FALSE)
+  function(sample1,sample2,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,affy=FALSE,verbose=FALSE,log=FALSE,robust=TRUE)
 {
 ###  Only take the finite observations
   n<-dim(sample1) 
@@ -140,6 +140,7 @@
               as.integer(B),
               as.integer(all.out),
               as.integer(verbose),
+              as.integer(robust),
               PACKAGE="bridge")
     }
   else
@@ -194,6 +195,7 @@
             as.integer(min.iter),
             as.integer(batch), as.integer(all.out),
             as.integer(verbose),
+            as.integer(robust),
             PACKAGE="bridge")
   
 ### Create a new object

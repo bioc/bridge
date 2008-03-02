@@ -1,5 +1,5 @@
 "bridge.3samples" <-
-  function(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE,log=FALSE)
+  function(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE,log=FALSE,robust=TRUE)
 {
 ###  Only take the finite observations
   if(!log)
@@ -143,7 +143,6 @@
           a.eps3=double(length),
           as.double(b.eps3),
           b.eps3=double(length),
-          move=double(G),
           w1=as.double(rep(0.001,R1*G)),
           w2=as.double(rep(0.001,R2*G)),
           w3=as.double(rep(0.001,R3*G)),
@@ -161,6 +160,7 @@
           as.integer(B),
           as.integer(all.out),
           as.integer(verbose),
+          as.integer(robust),
           PACKAGE="bridge")
   
   prop.model<-matrix(0,G,5)
@@ -195,7 +195,7 @@
                  nu1=nu1,nu2=nu2,nu3=nu3,
                  lambda.gamma1=obj$lambda.gamma1, lambda.gamma2=obj$lambda.gamma2, lambda.gamma3=obj$lambda.gamma3, lambda.gamma12=obj$lambda.gamma12,
                  lambda.gamma13=obj$lambda.gamma13, lambda.gamma23=obj$lambda.gamma23, lambda.gamma123=obj$lambda.gamma123, 
-                 prop.model=prop.model,move=obj$move/B)
+                 prop.model=prop.model)
   
   class(new.mcmc)<-"bridge3"
   

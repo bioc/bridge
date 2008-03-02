@@ -8,7 +8,7 @@
   code can be used with both cDNA microarrays or Affymetrix chip.
 }
 \usage{
-bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE,log=FALSE)
+bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE,log=FALSE,robust=TRUE)
 }
 
 \details{
@@ -51,6 +51,8 @@ bridge.3samples(sample1,sample2,sample3,B=1000,min.iter=0,batch=10,mcmc.obj=NULL
     the current MCMC iteration number should be printed out.}
   \item{log}{A logical value indicating if
     the data are log transformed.}
+  \item{robust}{A logical value indicating if a t model (\code{robust==TRUE}) or a Gaussian model (\code{robust==TRUE}) should be used. In the case of the t-model, the degrees of freedoms are estimated.}
+    
 }
 \value{
   An object of type \code{bridge3} containing the sampled values from the
@@ -137,7 +139,7 @@ sample1<-matrix(exp(rnorm(150)),50,3)
 sample2<-matrix(exp(rnorm(200)),50,4)
 sample3<-matrix(exp(rnorm(150)),50,3)
 
-mcmc.bridge3<-bridge.3samples(sample1,sample2,sample3,B=10,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE)
+mcmc.bridge3<-bridge.3samples(sample1,sample2,sample3,B=10,min.iter=0,batch=10,mcmc.obj=NULL,all.out=TRUE,verbose=FALSE,robust=TRUE)
 }
 \keyword{models}
 \keyword{robust}
