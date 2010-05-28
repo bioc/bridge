@@ -224,9 +224,9 @@ void free_dmatrix(double **array, int nb_row)
 
   int i;
   for(i=0;i<nb_row;i++)
-    free(array[i]);
+    Free(array[i]);
 
-  free(array);
+  Free(array);
 }
 /****************************************************************************************************/
 /*                                                                   quicksort2                                                                                        */
