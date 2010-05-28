@@ -740,8 +740,12 @@ void mcmc(double **data1,double **data2, int *n1, int *n2, int *nb_col1,
   //printf("\nThe number of acceptance for df is %g\n",(double)countdf/((double)((*B)*(*n2))));
   //printf("\nThe number of acceptance for gamma is %g\n",(double)countgamma/((double)((*B)*(*n1))));
 
-  free(df_new);
-  free(sum_l_w);
-  free(sum_l_w_new);
+  Free(df_new);
+  Free(sum_l_w);
+  Free(sum_l_w_new);
+
+  Free(mu_gamma1);
+  Free(mu_gamma2);
+  Free(mu_gamma);
 }
 
