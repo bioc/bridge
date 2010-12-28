@@ -24,7 +24,7 @@ The bridge package}
 
 \begin{center}
   $^*$Department Statistics, University of Washington\\
-  \url{http://www.stat.washington.edu/raph}\\
+  \url{http://www.rglab.org}\\
   {\tt raph@stat.washington.edu}
 \end{center}
 
